@@ -2187,6 +2187,8 @@ header.site.sc {
 @media(max-width:860px){.pk3{grid-template-columns:1fr}}
 .pk3 .door .newtag{position:static;align-self:flex-start;margin-bottom:4px}
 .pk3+.combo-strip{max-width:none}
+.door-soon{opacity:.78;border-style:dashed}
+.pk4 .door b{font-size:17px}
 </style>
   </head>
   <body>
@@ -4264,12 +4266,12 @@ function vHome() {
     <div class="eyebrow">Diagnósticos · Imagem Comunicação</div>
     <h1>O que as pessoas <em>enxergam</em><br>quando chegam até a sua marca?</h1>
     <p class="lead">Escolha por onde começar: o que o perfil mostra, o que a marca quer transmitir, ou os dois juntos num só relatório.</p>
-    <div class="doors pk3">
+    <div class="doors pk4">
       <a class="door" href="#arquetipo" onclick="goAnchor('arquetipo');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Arquétipo</small><b>O que a sua marca quer transmitir</b><span class="dp">4x de ${brl(parc4(c.arqExpress))}</span><i>Ver o plano →</i></a>
       <a class="door" href="#planos" onclick="goAnchor('planos');return false"><small>Diagnóstico de Perfil</small><b>Como o seu Instagram funciona</b><span class="dp">4x de ${brl(parc4(c.completo))}</span><i>Ver o plano →</i></a>
       <a class="door door-hl" href="#autoridade" onclick="goAnchor('autoridade');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Autoridade</small><b>Arquétipo + Perfil num relatório único</b><span class="dp">4x de ${brl(parc4(c.autoridade))}</span><i>Ver o plano →</i></a>
+      <a class="door door-soon" href="#google" onclick="goAnchor('google');return false"><span class="newtag">EM BREVE</span><small>Diagnóstico Google</small><b>Como você aparece quando procuram por você</b><span class="dp">4x de ${brl(parc4(c.google))}</span><i>Saiba mais →</i></a>
     </div>
-    <a class="combo-strip" href="#google" onclick="goAnchor('google');return false"><span class="newtag">EM BREVE</span><b>Diagnóstico Google</b><span>Ficha, avaliações, site e domínio frente às boas práticas do Google</span><em>4x de ${brl(parc4(c.google))} →</em></a>
     <form class="handle" id="hform" autocomplete="off"><span>@</span><input id="hin" placeholder="já sabe? digite o @ para o Perfil" aria-label="Seu perfil do Instagram" value="${esc(S.handle)}"><button class="btn" type="submit">Gerar diagnóstico de Perfil</button></form>
     <div id="herr" class="small" style="color:#f0a79b;min-height:1.3em"></div>
     <div class="trust"><span><b>Só o @.</b> Sem senha, sem acesso à conta.</span><span><b>Dados públicos</b> do seu perfil.</span><span><b>Padrão Imagem</b> de avaliação.</span></div>
