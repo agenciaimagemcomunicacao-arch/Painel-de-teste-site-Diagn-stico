@@ -2190,6 +2190,12 @@ header.site.sc {
 .door-soon{opacity:.78;border-style:dashed}
 .pk4 .door b{font-size:17px}
 .gravar .testbar,.gravar .fab,.gravar [data-test]{display:none!important}
+
+.perfil-card{margin:16px 0;padding:14px;border:1px solid var(--line,#ddd);border-radius:14px;background:rgba(255,255,255,.04)}
+.pc-top{display:flex;gap:12px;align-items:center}
+.pc-av{width:44px;height:44px;border-radius:50%;background:#c9a24b;color:#111;display:flex;align-items:center;justify-content:center;font-weight:700}
+.pc-dest{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pc-dest span{font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid var(--line,#ccc)}
 </style>
   </head>
   <body>
@@ -3700,7 +3706,7 @@ function arqPretendido(q) {
 }
 /* leitura real do perfil público de @samara.hayumi (capturada em 06/11/2026), usada na gravação dos vídeos */
 const ARQ_REAIS = {
-  'samara.hayumi': { perfil: {"governante": 100.0, "cuidador": 80.7, "sabio": 78.9, "amante": 44.3, "pessoa_comum": 34.2, "heroi": 30.6, "inocente": 18.0, "fora_da_lei": 18.0, "criador": 15.2, "mago": 10.0, "explorador": 2.7, "bobo": 0.0}, dims: {"verbal": 100, "visual": 100, "conteudo": 88, "comportamento": 29, "posicionamento": 100} },
+  'samara.hayumi': { card: { nome: 'Sâmara Hayumi', bio_nome: 'SÂMARA HAYUMI Odontologia e Mkt estratégico', bio: 'Excelência profissional através da comunicação, do atendimento e da experiência.', seguidores: 2446, destaques: ['Clareamento','Antes e depois','1ª Consulta','Depoimentos','Vacation','Especialidades','Quem sou'], lidos: 24, proprios: 15 }, perfil: {"governante": 100.0, "cuidador": 80.7, "sabio": 78.9, "amante": 44.3, "pessoa_comum": 34.2, "heroi": 30.6, "inocente": 18.0, "fora_da_lei": 18.0, "criador": 15.2, "mago": 10.0, "explorador": 2.7, "bobo": 0.0}, dims: {"verbal": 100, "visual": 100, "conteudo": 88, "comportamento": 29, "posicionamento": 100} },
 };
 /* percebido (ILUSTRATIVO, derivado do @, salvo perfis com leitura real em ARQ_REAIS) */
 function arqPercebido(handle) {
@@ -3779,7 +3785,25 @@ const ARQ_ETAPAS = [
   'Confrontando o percebido com o pretendido',
   'Montando o relatório de arquétipo',
 ];
-const etapasAtuais = () => (isArq(S.cur) ? ARQ_ETAPAS : ETAPAS);
+const arqCard = () => { const h = (S.handle || (S.cur && S.cur.handle) || '').replace(/^@/, '').toLowerCase(); return ARQ_REAIS[h] && ARQ_REAIS[h].card; };
+const etapasAtuais = () => {
+  const c = arqCard();
+  if (c) {
+    const base = isArq(S.cur) ? ARQ_ETAPAS.slice() : ETAPAS.slice();
+    base[1 - 1 + (isArq(S.cur) ? 1 : 0)] = isArq(S.cur) ? 'Perfil público localizado: ' + c.seguidores.toLocaleString('pt-BR') + ' seguidores' : base[0];
+    if (isArq(S.cur)) base[2] = 'Lendo a bio e ' + c.lidos + ' publicações (' + c.proprios + ' da própria voz)';
+    return base;
+  }
+  return isArq(S.cur) ? ARQ_ETAPAS : ETAPAS;
+};
+function cardPerfilHTML() {
+  const c = arqCard();
+  if (!c) return '';
+  return '<div class="perfil-card"><div class="pc-top"><div class="pc-av">S</div><div><b>@samara.hayumi</b><br><span class="muted small">' + esc(c.bio_nome) + '</span></div></div>' +
+    '<p class="small" style="margin:10px 0 6px">“' + esc(c.bio) + '”</p>' +
+    '<div class="small muted">' + c.seguidores.toLocaleString('pt-BR') + ' seguidores · ' + c.lidos + ' publicações lidas</div>' +
+    '<div class="pc-dest">' + c.destaques.map((d) => '<span>' + esc(d) + '</span>').join('') + '</div></div>';
+}
 
 /* ---------- questionário (antes da análise) ---------- */
 function vQuest() {
@@ -4589,13 +4613,14 @@ function iniciarGeracao() {
       return;
     }
     i++;
-    setTimeout(step, 520);
+    setTimeout(step, arqCard() ? 1500 : 520);
   };
   step();
 }
 function vLoading() {
   return `<section class="screen"><div class="wrap"><div class="panel"><div class="eyebrow">Pagamento aprovado</div><h2>${isArq(S.cur) ? 'Confrontando o arquétipo de ' : 'Gerando o diagnóstico de '}${esc(S.handle)}</h2>
   <div class="pbar"><i id="pb"></i></div>
+  ${typeof cardPerfilHTML === 'function' ? cardPerfilHTML() : ''}
   <ul class="steplist">${etapasAtuais().map((e) => `<li><i></i>${e}</li>`).join('')}</ul></div></div></section>`;
 }
 
