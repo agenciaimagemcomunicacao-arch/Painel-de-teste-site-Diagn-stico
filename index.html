@@ -4498,7 +4498,7 @@ function pixSVG() {
 function vCheckout() {
   const c = cfg(),
     v = planoInfo(S.plano).valor,
-    L = S.lead,
+    L = (document.documentElement.classList.contains('gravar') && !(S.lead && S.lead.email)) ? { email: 'contato@exemplo.com.br', wa: '(33) 99999-0000' } : S.lead,
     pay = S.pay || 'pix';
   return `<section class="screen"><div class="wrap"><div class="panel">
     <div class="eyebrow">Quase lá</div><h2>Finalize a sua compra</h2>
