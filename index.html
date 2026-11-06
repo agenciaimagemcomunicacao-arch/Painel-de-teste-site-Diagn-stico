@@ -2183,6 +2183,10 @@ header.site.sc {
 @media(max-width:980px){.pk4{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.pk4{grid-template-columns:1fr}}
 .pk4 .door .newtag{position:static;align-self:flex-start;margin-bottom:4px}
+.pk3{grid-template-columns:repeat(3,1fr);max-width:none}
+@media(max-width:860px){.pk3{grid-template-columns:1fr}}
+.pk3 .door .newtag{position:static;align-self:flex-start;margin-bottom:4px}
+.pk3+.combo-strip{max-width:none}
 </style>
   </head>
   <body>
@@ -2206,15 +2210,6 @@ header.site.sc {
               return false;
             "
             >Como funciona</a
-          >
-          <a
-            href="#google"
-            class="hide-m"
-            onclick="
-              goAnchor('google');
-              return false;
-            "
-            >Diagnóstico Google</a
           >
           <a
             href="#arquetipo"
@@ -2242,6 +2237,15 @@ header.site.sc {
               return false;
             "
             >Diagnóstico de Autoridade</a
+          >
+          <a
+            href="#google"
+            class="hide-m"
+            onclick="
+              goAnchor('google');
+              return false;
+            "
+            >Diagnóstico Google</a
           >
           <button class="hide-m" data-test onclick="go('admin')">Painel interno</button>
           <button data-test onclick="tpToggle()">Painel de testes</button>
@@ -4116,7 +4120,7 @@ function reveal() {
 }
 </script>
     <script>/* ===== carrossel de banners ===== */
-const BN = { i: 0, n: 4, t: null, dur: 6500 };
+const BN = { i: 0, n: 3, t: null, dur: 6500 };
 function bnShow(i) {
   const root = document.getElementById('bn');
   if (!root) return;
@@ -4260,12 +4264,12 @@ function vHome() {
     <div class="eyebrow">Diagnósticos · Imagem Comunicação</div>
     <h1>O que as pessoas <em>enxergam</em><br>quando chegam até a sua marca?</h1>
     <p class="lead">Escolha por onde começar: o que o perfil mostra, o que a marca quer transmitir, ou os dois juntos num só relatório.</p>
-    <div class="doors pk4">
-      <a class="door" href="#google" onclick="goAnchor('google');return false"><span class="newtag">EM BREVE</span><small>Diagnóstico Google</small><b>Como você aparece quando procuram por você</b><span class="dp">4x de ${brl(parc4(c.google))}</span><i>Saiba mais →</i></a>
+    <div class="doors pk3">
       <a class="door" href="#arquetipo" onclick="goAnchor('arquetipo');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Arquétipo</small><b>O que a sua marca quer transmitir</b><span class="dp">4x de ${brl(parc4(c.arqExpress))}</span><i>Ver o plano →</i></a>
       <a class="door" href="#planos" onclick="goAnchor('planos');return false"><small>Diagnóstico de Perfil</small><b>Como o seu Instagram funciona</b><span class="dp">4x de ${brl(parc4(c.completo))}</span><i>Ver o plano →</i></a>
       <a class="door door-hl" href="#autoridade" onclick="goAnchor('autoridade');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Autoridade</small><b>Arquétipo + Perfil num relatório único</b><span class="dp">4x de ${brl(parc4(c.autoridade))}</span><i>Ver o plano →</i></a>
     </div>
+    <a class="combo-strip" href="#google" onclick="goAnchor('google');return false"><span class="newtag">EM BREVE</span><b>Diagnóstico Google</b><span>Ficha, avaliações, site e domínio frente às boas práticas do Google</span><em>4x de ${brl(parc4(c.google))} →</em></a>
     <form class="handle" id="hform" autocomplete="off"><span>@</span><input id="hin" placeholder="já sabe? digite o @ para o Perfil" aria-label="Seu perfil do Instagram" value="${esc(S.handle)}"><button class="btn" type="submit">Gerar diagnóstico de Perfil</button></form>
     <div id="herr" class="small" style="color:#f0a79b;min-height:1.3em"></div>
     <div class="trust"><span><b>Só o @.</b> Sem senha, sem acesso à conta.</span><span><b>Dados públicos</b> do seu perfil.</span><span><b>Padrão Imagem</b> de avaliação.</span></div>
@@ -4280,8 +4284,6 @@ function vHome() {
           <div class="vis"><div class="cmpmini"><div class="cmpleg"><span><i style="background:var(--acc)"></i>Pretendido</span><span><i style="background:#8d8689"></i>Percebido</span></div>${[['Cuidador', 100, 64], ['Governante', 78, 92], ['Sábio', 55, 40], ['Criador', 18, 60]].map(([n, a, b], k) => `<div class="mr"><b>${n}</b><div><i style="width:${a}%;background:var(--acc);animation-delay:${0.3 + k * 0.12}s"></i><i style="width:${b}%;background:#8d8689;animation-delay:${0.4 + k * 0.12}s"></i></div></div>`).join('')}</div></div></article>
         <article class="bs b1"><div class="tx"><div class="eyebrow">Primeira impressão</div><h2>Em 5 segundos, seu cliente já <em>decidiu</em> se confia em você.</h2><p>A bio, a foto e o grid contam a sua história antes de qualquer conversa. Veja o que o seu perfil comunica hoje.</p><div class="btns"><button class="btn" onclick="goAnchor('planos')">Ver o Diagnóstico de Perfil</button></div></div>
           <div class="vis"><div class="pf"><span class="badge">5s</span><div class="top"><span class="a"></span><div style="flex:1"><u class="m"></u><u class="s"></u></div></div><u class="m" style="margin-top:14px"></u><div class="grid3"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></article>
-        <article class="bs b8"><div class="tx"><div class="eyebrow">Em breve · Diagnóstico Google</div><h2>O que aparece quando procuram por <em>você</em> no Google?</h2><p>Ficha, avaliações, site e domínio, com as boas práticas do Google e um panorama do seu setor. 4x de ${brl(parc4(c.google))} ou ${brl(aVista(c.google))} à vista no PIX.</p><div class="btns"><button class="btn" onclick="goAnchor('google')">Conhecer o Diagnóstico Google</button></div></div>
-          <div class="vis"><div class="cmpmini"><div class="cmpleg"><span><i style="background:var(--acc)"></i>Nota por dimensão</span></div>${[['Ficha', 72], ['Avaliações', 80], ['Site', 47], ['Domínio', 60]].map(([n, a], k) => `<div class="mr"><b>${n}</b><div><i style="width:${a}%;background:var(--acc);animation-delay:${0.3 + k * 0.12}s"></i></div></div>`).join('')}</div></div></article>
       </div>
       <div class="bctl"><div class="bdots" id="bdots"></div><div class="barr"><button aria-label="Anterior" onclick="bnGo(-1)">‹</button><button aria-label="Próximo" onclick="bnGo(1)">›</button></div></div>
     </div>
@@ -4297,15 +4299,6 @@ function vHome() {
       <div class="card reveal"><div class="num">2</div><h3>Geramos o relatório em PDF</h3><p class="muted">Leitura dos seus posts, pontos fortes e de atenção, círculo cromático, tipografia, branding, jornada até a reserva e site e Google.</p></div>
       <div class="card reveal"><div class="num">3</div><h3>Você executa o mês</h3><p class="muted">Cronograma de 4 semanas com o porquê de cada conteúdo e roteiro completo para gravar e postar.</p></div>
     </div>
-  </div></section>
-
-  <section class="s" id="google" style="background:var(--t2)"><div class="wrap">
-    <div class="eyebrow">Em breve · Diagnóstico Google</div><h2>O que aparece quando procuram por você no Google</h2>
-    <p class="muted" style="max-width:660px">Lemos a sua ficha do Google, as avaliações, o site e o domínio, comparamos com as boas práticas do próprio Google e mostramos como você está frente aos negócios do seu setor na cidade.</p>
-    <div class="plans" style="margin-top:34px;grid-template-columns:minmax(0,600px)"><div class="plan reveal"><span class="tag">EM BREVE</span><div class="eyebrow" style="margin:0">Presença no Google</div><h3>Diagnóstico Google</h3>
-      <div class="price">${precoHTML(c.google)}</div>
-      <ul><li>Nota de 0 a 100 em cinco dimensões</li><li>Ficha do Google frente às regras e boas práticas do Google</li><li>Avaliações: temas, respostas do dono e as palavras dos clientes</li><li>Site: velocidade no celular, HTTPS, título e contato</li><li>Domínio e e-mail profissional</li><li>Panorama do seu setor na cidade</li></ul>
-      <a class="btn wa" target="_blank" rel="noopener" href="#" onclick="return waEquipe(this)">Quero ser avisado</a></div></div>
   </div></section>
 
   <section class="s" id="arquetipo" style="background:var(--g8);color:var(--t2)"><div class="wrap">
@@ -4356,6 +4349,15 @@ function vHome() {
       <ul><li>Relatório único em PDF, sem páginas repetidas</li><li>Arquétipo, percebido x pretendido e suas palavras x o perfil</li><li>Nota do perfil, círculo cromático e leitura post a post</li><li>As cinco frentes cruzadas: verbal, visual, conteúdo, comportamento e posicionamento</li><li>Bio, linha editorial e roteiros já na voz do seu arquétipo</li><li>Um único cronograma de 4 semanas com 12 conteúdos</li><li>PDF protegido contra edição, liberado para impressão</li></ul>
       <button class="btn" onclick="choose('autoridade')">Quero o Diagnóstico de Autoridade</button></div></div>
     <p style="margin-top:22px"><button class="btn lt" onclick="arqExemplo('perfil.exemplo','autoridade')">Ver um diagnóstico de autoridade de exemplo</button></p>
+  </div></section>
+
+  <section class="s" id="google" style="background:var(--t2)"><div class="wrap">
+    <div class="eyebrow">Em breve · Diagnóstico Google</div><h2>O que aparece quando procuram por você no Google</h2>
+    <p class="muted" style="max-width:660px">Lemos a sua ficha do Google, as avaliações, o site e o domínio, comparamos com as boas práticas do próprio Google e mostramos como você está frente aos negócios do seu setor na cidade.</p>
+    <div class="plans" style="margin-top:34px;grid-template-columns:minmax(0,600px)"><div class="plan reveal"><span class="tag">EM BREVE</span><div class="eyebrow" style="margin:0">Presença no Google</div><h3>Diagnóstico Google</h3>
+      <div class="price">${precoHTML(c.google)}</div>
+      <ul><li>Nota de 0 a 100 em cinco dimensões</li><li>Ficha do Google frente às regras e boas práticas do Google</li><li>Avaliações: temas, respostas do dono e as palavras dos clientes</li><li>Site: velocidade no celular, HTTPS, título e contato</li><li>Domínio e e-mail profissional</li><li>Panorama do seu setor na cidade</li></ul>
+      <a class="btn wa" target="_blank" rel="noopener" href="#" onclick="return waEquipe(this)">Quero ser avisado</a></div></div>
   </div></section>
 
   <section class="s"><div class="wrap">
