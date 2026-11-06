@@ -2164,6 +2164,19 @@ header.site.sc {
 .plan .price small{font-size:.82rem}
 .prod .pfrom b{font-size:1.5rem}
 .prod .pfrom small{display:block;font-size:.8rem;margin-top:2px}
+
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 12px;max-width:820px}
+.door{position:relative;display:flex;flex-direction:column;gap:6px;padding:20px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(255,255,255,.05);color:#fff;text-decoration:none;transition:.2s}
+.door:hover{border-color:var(--acc);transform:translateY(-2px)}
+.door small{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.door b{font-size:19px;line-height:1.25}
+.door .dp{opacity:.8;font-size:14px}
+.door i{font-style:normal;color:var(--acc);margin-top:6px;font-weight:600}
+.combo-strip{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;max-width:820px;padding:14px 18px;margin-bottom:22px;border:1px dashed var(--acc);border-radius:14px;color:#fff;text-decoration:none}
+.combo-strip em{font-style:normal;color:var(--acc);font-weight:600;margin-left:auto}
+.door .newtag{position:absolute;top:14px;right:14px}
+@media(max-width:640px){.doors{grid-template-columns:1fr}.combo-strip em{margin-left:0}}
+.combo-strip .newtag{position:static}
 </style>
   </head>
   <body>
@@ -4228,24 +4241,20 @@ function vHome() {
   const c = cfg();
   return `
   <section class="hero dark"><div class="spot"></div><div class="wrap">
-    <a href="#arquetipo" class="newpill" onclick="goAnchor('arquetipo');return false"><b>NOVO</b> Diagnóstico de Arquétipo: confronte o que você quer transmitir com o que o perfil mostra →</a>
-    <div class="eyebrow">Diagnóstico de Perfil · Instagram</div>
-    <h1>O que as pessoas <em>enxergam</em><br>quando abrem o seu perfil?</h1>
-    <p class="lead">Digite o seu @ e receba o relatório em PDF no padrão da Imagem Comunicação: leitura dos seus posts, identidade visual, jornada do cliente até a reserva, linha editorial e um mês de conteúdos com roteiro.</p>
-    <form class="handle" id="hform" autocomplete="off"><span>@</span><input id="hin" placeholder="seuperfil" aria-label="Seu perfil do Instagram" value="${esc(S.handle)}"><button class="btn" type="submit">Gerar meu diagnóstico</button></form>
+    <div class="eyebrow">Diagnósticos · Imagem Comunicação</div>
+    <h1>O que as pessoas <em>enxergam</em><br>quando chegam até a sua marca?</h1>
+    <p class="lead">Escolha por onde começar: o que o perfil mostra, o que a marca quer transmitir, ou os dois juntos num só relatório.</p>
+    <div class="doors">
+      <a class="door" href="#arquetipo" onclick="goAnchor('arquetipo');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Arquétipo</small><b>O que a sua marca quer transmitir</b><span class="dp">a partir de 4x de ${brl(parc4(c.arqExpress))}</span><i>Ver planos →</i></a>
+      <a class="door" href="#planos" onclick="goAnchor('planos');return false"><small>Diagnóstico de Perfil</small><b>Como o seu Instagram funciona</b><span class="dp">a partir de 4x de ${brl(parc4(c.express))}</span><i>Ver planos →</i></a>
+    </div>
+    <a class="combo-strip" href="#autoridade" onclick="goAnchor('autoridade');return false"><span class="newtag">NOVO</span><b>Diagnóstico de Autoridade</b><span>Perfil + Arquétipo em um relatório único, com um só plano de 4 semanas</span><em>4x de ${brl(parc4(c.autoridade))} · ou ${brl(aVista(c.autoridade))} no PIX →</em></a>
+    <form class="handle" id="hform" autocomplete="off"><span>@</span><input id="hin" placeholder="já sabe? digite o @ para o Perfil" aria-label="Seu perfil do Instagram" value="${esc(S.handle)}"><button class="btn" type="submit">Gerar diagnóstico de Perfil</button></form>
     <div id="herr" class="small" style="color:#f0a79b;min-height:1.3em"></div>
-    <div class="trust"><span><b>Só o @.</b> Sem senha, sem acesso à conta.</span><span><b>Dados públicos</b> do seu perfil.</span><span><b>Padrão Imagem</b> de avaliação.</span><span><b>Novo:</b> <a href="#arquetipo" style="color:var(--acc)" onclick="goAnchor('arquetipo');return false">Diagnóstico de Arquétipo</a></span></div>
+    <div class="trust"><span><b>Só o @.</b> Sem senha, sem acesso à conta.</span><span><b>Dados públicos</b> do seu perfil.</span><span><b>Padrão Imagem</b> de avaliação.</span></div>
   </div></section>
 
   <div class="marq" aria-hidden="true"><div class="track"><span>Bio</span><span>Identidade visual</span><span>Linha editorial</span><span>Círculo cromático</span><span>Tipografia</span><span>Branding</span><span>Cronograma do mês</span><span>Roteiros prontos</span><span>Autoridade</span><span>Conversão</span><span>Bio</span><span>Identidade visual</span><span>Linha editorial</span><span>Círculo cromático</span><span>Tipografia</span><span>Branding</span><span>Cronograma do mês</span><span>Roteiros prontos</span><span>Autoridade</span><span>Conversão</span><span>Bio</span><span>Identidade visual</span><span>Linha editorial</span><span>Círculo cromático</span><span>Tipografia</span><span>Branding</span><span>Cronograma do mês</span><span>Roteiros prontos</span><span>Autoridade</span><span>Conversão</span><span>Bio</span><span>Identidade visual</span><span>Linha editorial</span><span>Círculo cromático</span><span>Tipografia</span><span>Branding</span><span>Cronograma do mês</span><span>Roteiros prontos</span><span>Autoridade</span><span>Conversão</span></div></div>
-  <section class="s prods" id="produtos"><div class="wrap">
-    <div class="eyebrow">Dois diagnósticos e a união dos dois</div><h2>Qual você precisa agora?</h2>
-    <div class="grid g3" style="margin-top:26px">
-      <div class="card reveal prod arqc"><span class="newtag">NOVO</span><div class="eyebrow" style="margin:0">Diagnóstico de Arquétipo</div><h3>O que o seu perfil diz sobre a marca</h3><p class="muted">Você responde ao questionário e confrontamos o que quer transmitir com o que o perfil mostra, arquétipo por arquétipo.</p><div class="pfrom">a partir de <b>4x de ${brl(parc4(c.arqExpress))}</b><small>ou ${brl(aVista(c.arqExpress))} à vista no PIX</small></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" onclick="goAnchor('arquetipo')">Ver planos do Arquétipo</button></div></div>
-      <div class="card reveal prod"><div class="eyebrow" style="margin:0">Diagnóstico de Perfil</div><h3>Como o seu Instagram funciona</h3><p class="muted">Bio, grid, identidade visual, linha editorial e um mês de conteúdos com roteiro.</p><div class="pfrom">a partir de <b>4x de ${brl(parc4(c.express))}</b><small>ou ${brl(aVista(c.express))} à vista no PIX</small></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" onclick="goAnchor('planos')">Ver planos do Perfil</button></div></div>
-      <div class="card reveal prod arqc"><span class="newtag">NOVO</span><div class="eyebrow" style="margin:0">Diagnóstico de Autoridade</div><h3>Quem você é + como você aparece</h3><p class="muted">Perfil e Arquétipo num relatório único, com um só plano de 4 semanas.</p><div class="pfrom"><b>4x de ${brl(parc4(c.autoridade))}</b><small>ou ${brl(aVista(c.autoridade))} à vista no PIX</small></div><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" onclick="goAnchor('autoridade')">Ver o Diagnóstico de Autoridade</button></div></div>
-    </div>
-  </div></section>
     <section class="bn"><div class="wrap">
     <div class="bnr" id="bn" role="region" aria-roledescription="carrossel" aria-label="Destaques do diagnóstico">
       <div class="stage">
