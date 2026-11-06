@@ -2177,22 +2177,6 @@ header.site.sc {
 .door .newtag{position:absolute;top:14px;right:14px}
 @media(max-width:640px){.doors{grid-template-columns:1fr}.combo-strip em{margin-left:0}}
 .combo-strip .newtag{position:static}
-/* banner compacto no topo */
-.bn{padding:18px 0 0}
-.bnr{border-radius:20px}
-.bs{padding:22px 32px 42px;gap:18px;grid-template-columns:1.3fr .7fr}
-.bs h2{font-size:clamp(21px,2.6vw,28px);line-height:1.15;margin:4px 0 8px}
-.bs p{font-size:14px;line-height:1.45;margin:0 0 12px;max-width:540px}
-.bs .eyebrow{font-size:11px}
-.bs .btn{padding:9px 18px;font-size:14px}
-.bs .vis{zoom:.55;justify-self:end}
-.bnr .bctl{padding-bottom:0}
-.bn+.hero,.bnr~.hero{padding-top:0}
-@media(max-width:720px){.bs{grid-template-columns:1fr;padding:20px 20px 46px}.bs .vis{display:none}.bs h2{font-size:21px}}
-.bs{padding-bottom:58px}
-.bn{padding-bottom:18px}
-.bnr .bctl{bottom:14px}
-.bn+.hero{padding-top:44px}
 </style>
   </head>
   <body>
@@ -4256,6 +4240,20 @@ window.addEventListener(
 function vHome() {
   const c = cfg();
   return `
+  <section class="hero dark"><div class="spot"></div><div class="wrap">
+    <div class="eyebrow">Diagnósticos · Imagem Comunicação</div>
+    <h1>O que as pessoas <em>enxergam</em><br>quando chegam até a sua marca?</h1>
+    <p class="lead">Escolha por onde começar: o que o perfil mostra, o que a marca quer transmitir, ou os dois juntos num só relatório.</p>
+    <div class="doors">
+      <a class="door" href="#arquetipo" onclick="goAnchor('arquetipo');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Arquétipo</small><b>O que a sua marca quer transmitir</b><span class="dp">a partir de 4x de ${brl(parc4(c.arqExpress))}</span><i>Ver planos →</i></a>
+      <a class="door" href="#planos" onclick="goAnchor('planos');return false"><small>Diagnóstico de Perfil</small><b>Como o seu Instagram funciona</b><span class="dp">a partir de 4x de ${brl(parc4(c.express))}</span><i>Ver planos →</i></a>
+    </div>
+    <a class="combo-strip" href="#autoridade" onclick="goAnchor('autoridade');return false"><span class="newtag">NOVO</span><b>Diagnóstico de Autoridade</b><span>Perfil + Arquétipo em um relatório único, com um só plano de 4 semanas</span><em>4x de ${brl(parc4(c.autoridade))} · ou ${brl(aVista(c.autoridade))} no PIX →</em></a>
+    <form class="handle" id="hform" autocomplete="off"><span>@</span><input id="hin" placeholder="já sabe? digite o @ para o Perfil" aria-label="Seu perfil do Instagram" value="${esc(S.handle)}"><button class="btn" type="submit">Gerar diagnóstico de Perfil</button></form>
+    <div id="herr" class="small" style="color:#f0a79b;min-height:1.3em"></div>
+    <div class="trust"><span><b>Só o @.</b> Sem senha, sem acesso à conta.</span><span><b>Dados públicos</b> do seu perfil.</span><span><b>Padrão Imagem</b> de avaliação.</span></div>
+  </div></section>
+
     <section class="bn"><div class="wrap">
     <div class="bnr" id="bn" role="region" aria-roledescription="carrossel" aria-label="Destaques do diagnóstico">
       <div class="stage">
@@ -4279,19 +4277,6 @@ function vHome() {
   </div></section>
 
 
-  <section class="hero dark"><div class="spot"></div><div class="wrap">
-    <div class="eyebrow">Diagnósticos · Imagem Comunicação</div>
-    <h1>O que as pessoas <em>enxergam</em><br>quando chegam até a sua marca?</h1>
-    <p class="lead">Escolha por onde começar: o que o perfil mostra, o que a marca quer transmitir, ou os dois juntos num só relatório.</p>
-    <div class="doors">
-      <a class="door" href="#arquetipo" onclick="goAnchor('arquetipo');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Arquétipo</small><b>O que a sua marca quer transmitir</b><span class="dp">a partir de 4x de ${brl(parc4(c.arqExpress))}</span><i>Ver planos →</i></a>
-      <a class="door" href="#planos" onclick="goAnchor('planos');return false"><small>Diagnóstico de Perfil</small><b>Como o seu Instagram funciona</b><span class="dp">a partir de 4x de ${brl(parc4(c.express))}</span><i>Ver planos →</i></a>
-    </div>
-    <a class="combo-strip" href="#autoridade" onclick="goAnchor('autoridade');return false"><span class="newtag">NOVO</span><b>Diagnóstico de Autoridade</b><span>Perfil + Arquétipo em um relatório único, com um só plano de 4 semanas</span><em>4x de ${brl(parc4(c.autoridade))} · ou ${brl(aVista(c.autoridade))} no PIX →</em></a>
-    <form class="handle" id="hform" autocomplete="off"><span>@</span><input id="hin" placeholder="já sabe? digite o @ para o Perfil" aria-label="Seu perfil do Instagram" value="${esc(S.handle)}"><button class="btn" type="submit">Gerar diagnóstico de Perfil</button></form>
-    <div id="herr" class="small" style="color:#f0a79b;min-height:1.3em"></div>
-    <div class="trust"><span><b>Só o @.</b> Sem senha, sem acesso à conta.</span><span><b>Dados públicos</b> do seu perfil.</span><span><b>Padrão Imagem</b> de avaliação.</span></div>
-  </div></section>
 
   <div class="marq" aria-hidden="true"><div class="track"><span>Bio</span><span>Identidade visual</span><span>Linha editorial</span><span>Círculo cromático</span><span>Tipografia</span><span>Branding</span><span>Cronograma do mês</span><span>Roteiros prontos</span><span>Autoridade</span><span>Conversão</span><span>Bio</span><span>Identidade visual</span><span>Linha editorial</span><span>Círculo cromático</span><span>Tipografia</span><span>Branding</span><span>Cronograma do mês</span><span>Roteiros prontos</span><span>Autoridade</span><span>Conversão</span><span>Bio</span><span>Identidade visual</span><span>Linha editorial</span><span>Círculo cromático</span><span>Tipografia</span><span>Branding</span><span>Cronograma do mês</span><span>Roteiros prontos</span><span>Autoridade</span><span>Conversão</span><span>Bio</span><span>Identidade visual</span><span>Linha editorial</span><span>Círculo cromático</span><span>Tipografia</span><span>Branding</span><span>Cronograma do mês</span><span>Roteiros prontos</span><span>Autoridade</span><span>Conversão</span></div></div>
   <section class="s how" id="como"><div class="wrap">
