@@ -3698,10 +3698,15 @@ function arqPretendido(q) {
   } else comb = ip || ia || arqIdx(ARQ_ORDEM.reduce((x, a) => ((x[a] = 0), x), {}));
   return { pares: ip, abertas: ia, q: comb };
 }
-/* percebido (ILUSTRATIVO, derivado do @) */
+/* leitura real do perfil público de @samara.hayumi (capturada em 06/11/2026), usada na gravação dos vídeos */
+const ARQ_REAIS = {
+  'samara.hayumi': { perfil: {"governante": 100.0, "cuidador": 80.7, "sabio": 78.9, "amante": 44.3, "pessoa_comum": 34.2, "heroi": 30.6, "inocente": 18.0, "fora_da_lei": 18.0, "criador": 15.2, "mago": 10.0, "explorador": 2.7, "bobo": 0.0}, dims: {"verbal": 100, "visual": 100, "conteudo": 88, "comportamento": 29, "posicionamento": 100} },
+};
+/* percebido (ILUSTRATIVO, derivado do @, salvo perfis com leitura real em ARQ_REAIS) */
 function arqPercebido(handle) {
-  const h = handle.replace(/^@/, '').toLowerCase(),
-    R = rng(hash(h + '|arq')),
+  const h = handle.replace(/^@/, '').toLowerCase();
+  if (ARQ_REAIS[h]) return JSON.parse(JSON.stringify(ARQ_REAIS[h]));
+  const R = rng(hash(h + '|arq')),
     raw = {};
   ARQ_ORDEM.forEach((a) => (raw[a] = 1 + R() * 9));
   const top = ARQ_ORDEM[Math.floor(R() * ARQ_ORDEM.length)];
