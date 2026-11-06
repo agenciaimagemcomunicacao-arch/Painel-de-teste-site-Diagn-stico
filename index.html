@@ -2177,6 +2177,12 @@ header.site.sc {
 .door .newtag{position:absolute;top:14px;right:14px}
 @media(max-width:640px){.doors{grid-template-columns:1fr}.combo-strip em{margin-left:0}}
 .combo-strip .newtag{position:static}
+
+.pk4{grid-template-columns:repeat(4,1fr);max-width:none}
+.door-hl{border-color:var(--acc);background:rgba(217,166,122,.1)}
+@media(max-width:980px){.pk4{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.pk4{grid-template-columns:1fr}}
+.pk4 .door .newtag{position:static;align-self:flex-start;margin-bottom:4px}
 </style>
   </head>
   <body>
@@ -2200,6 +2206,15 @@ header.site.sc {
               return false;
             "
             >Como funciona</a
+          >
+          <a
+            href="#google"
+            class="hide-m"
+            onclick="
+              goAnchor('google');
+              return false;
+            "
+            >Diagnóstico Google</a
           >
           <a
             href="#arquetipo"
@@ -2284,10 +2299,11 @@ header.site.sc {
     <script>/* ================= CONFIG ================= */
 const DEF = {
   express: 199,
-  completo: 399,
-  arqExpress: 149, // VALOR DE TESTE: definir com o Carlos
+  completo: 299,
+  arqExpress: 189.9,
   arqCompleto: 249, // VALOR DE TESTE: definir com o Carlos
-  autoridade: 499, // VALOR DE TESTE do combo Diagnóstico de Autoridade
+  autoridade: 415,
+  google: 179,
   descAvista: 5, // % de desconto no PIX (à vista)
   dias: 30,
   whatsapp: '5533999746413',
@@ -4100,7 +4116,7 @@ function reveal() {
 }
 </script>
     <script>/* ===== carrossel de banners ===== */
-const BN = { i: 0, n: 7, t: null, dur: 6500 };
+const BN = { i: 0, n: 4, t: null, dur: 6500 };
 function bnShow(i) {
   const root = document.getElementById('bn');
   if (!root) return;
@@ -4244,11 +4260,12 @@ function vHome() {
     <div class="eyebrow">Diagnósticos · Imagem Comunicação</div>
     <h1>O que as pessoas <em>enxergam</em><br>quando chegam até a sua marca?</h1>
     <p class="lead">Escolha por onde começar: o que o perfil mostra, o que a marca quer transmitir, ou os dois juntos num só relatório.</p>
-    <div class="doors">
-      <a class="door" href="#arquetipo" onclick="goAnchor('arquetipo');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Arquétipo</small><b>O que a sua marca quer transmitir</b><span class="dp">a partir de 4x de ${brl(parc4(c.arqExpress))}</span><i>Ver planos →</i></a>
-      <a class="door" href="#planos" onclick="goAnchor('planos');return false"><small>Diagnóstico de Perfil</small><b>Como o seu Instagram funciona</b><span class="dp">a partir de 4x de ${brl(parc4(c.express))}</span><i>Ver planos →</i></a>
+    <div class="doors pk4">
+      <a class="door" href="#google" onclick="goAnchor('google');return false"><span class="newtag">EM BREVE</span><small>Diagnóstico Google</small><b>Como você aparece quando procuram por você</b><span class="dp">4x de ${brl(parc4(c.google))}</span><i>Saiba mais →</i></a>
+      <a class="door" href="#arquetipo" onclick="goAnchor('arquetipo');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Arquétipo</small><b>O que a sua marca quer transmitir</b><span class="dp">4x de ${brl(parc4(c.arqExpress))}</span><i>Ver o plano →</i></a>
+      <a class="door" href="#planos" onclick="goAnchor('planos');return false"><small>Diagnóstico de Perfil</small><b>Como o seu Instagram funciona</b><span class="dp">4x de ${brl(parc4(c.completo))}</span><i>Ver o plano →</i></a>
+      <a class="door door-hl" href="#autoridade" onclick="goAnchor('autoridade');return false"><span class="newtag">NOVO</span><small>Diagnóstico de Autoridade</small><b>Arquétipo + Perfil num relatório único</b><span class="dp">4x de ${brl(parc4(c.autoridade))}</span><i>Ver o plano →</i></a>
     </div>
-    <a class="combo-strip" href="#autoridade" onclick="goAnchor('autoridade');return false"><span class="newtag">NOVO</span><b>Diagnóstico de Autoridade</b><span>Perfil + Arquétipo em um relatório único, com um só plano de 4 semanas</span><em>4x de ${brl(parc4(c.autoridade))} · ou ${brl(aVista(c.autoridade))} no PIX →</em></a>
     <form class="handle" id="hform" autocomplete="off"><span>@</span><input id="hin" placeholder="já sabe? digite o @ para o Perfil" aria-label="Seu perfil do Instagram" value="${esc(S.handle)}"><button class="btn" type="submit">Gerar diagnóstico de Perfil</button></form>
     <div id="herr" class="small" style="color:#f0a79b;min-height:1.3em"></div>
     <div class="trust"><span><b>Só o @.</b> Sem senha, sem acesso à conta.</span><span><b>Dados públicos</b> do seu perfil.</span><span><b>Padrão Imagem</b> de avaliação.</span></div>
@@ -4263,14 +4280,8 @@ function vHome() {
           <div class="vis"><div class="cmpmini"><div class="cmpleg"><span><i style="background:var(--acc)"></i>Pretendido</span><span><i style="background:#8d8689"></i>Percebido</span></div>${[['Cuidador', 100, 64], ['Governante', 78, 92], ['Sábio', 55, 40], ['Criador', 18, 60]].map(([n, a, b], k) => `<div class="mr"><b>${n}</b><div><i style="width:${a}%;background:var(--acc);animation-delay:${0.3 + k * 0.12}s"></i><i style="width:${b}%;background:#8d8689;animation-delay:${0.4 + k * 0.12}s"></i></div></div>`).join('')}</div></div></article>
         <article class="bs b1"><div class="tx"><div class="eyebrow">Primeira impressão</div><h2>Em 5 segundos, seu cliente já <em>decidiu</em> se confia em você.</h2><p>A bio, a foto e o grid contam a sua história antes de qualquer conversa. Veja o que o seu perfil comunica hoje.</p><div class="btns"><button class="btn" onclick="goAnchor('planos')">Ver o Diagnóstico de Perfil</button></div></div>
           <div class="vis"><div class="pf"><span class="badge">5s</span><div class="top"><span class="a"></span><div style="flex:1"><u class="m"></u><u class="s"></u></div></div><u class="m" style="margin-top:14px"></u><div class="grid3"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></article>
-        <article class="bs b2"><div class="tx"><div class="eyebrow">Mês de conteúdo pronto</div><h2>12 roteiros <em>completos</em> para gravar e postar.</h2><p>Cronograma de 4 semanas, com o porquê de cada conteúdo, gancho, cenas, legenda e chamada para ação.</p><div class="btns"><button class="btn" onclick="choose('completo')">Quero o completo</button></div></div>
-          <div class="vis"><div class="cal">${[1, 2, 3, 4].map((w) => `<b>S${w}</b>` + [0, 1, 2].map((k) => `<i style="animation-delay:${(w - 1) * 0.45 + k * 0.14 + 0.3}s">✓</i>`).join('')).join('')}</div></div></article>
-        <article class="bs b3"><div class="tx"><div class="eyebrow">Leitura rápida</div><h2>Entenda o seu perfil em 18 páginas por <em>${brl(c.express)}</em>.</h2><p>Relatório em PDF com as 5 ações prioritárias, pontos fortes e de atenção, cadência de posts, círculo cromático e plano de 30, 60 e 90 dias.</p><div class="btns"><button class="btn lt" onclick="choose('express')">Quero a leitura rápida</button></div></div>
-          <div class="vis"><div class="ring"><svg viewBox="0 0 120 120"><circle class="tr" cx="60" cy="60" r="50"/><circle class="pg" cx="60" cy="60" r="50" pathLength="100"/></svg><div><b>18</b><span>páginas em PDF</span></div></div></div></article>
-        <article class="bs b4"><div class="tx"><div class="eyebrow">Padrão Imagem</div><h2>Cores, tipografia e branding <em>do seu jeito</em>.</h2><p>O Diagnóstico Completo mede o círculo cromático do seu grid e mostra como aplicar a identidade com consistência. Relatório de 36 páginas por ${brl(c.completo)}.</p><div class="btns"><button class="btn" onclick="choose('completo')">Ver o completo</button></div></div>
-          <div class="vis"><div class="fan"><i style="background:#762D58" data-h="#762D58"></i><i style="background:#B3568C" data-h="#B3568C"></i><i style="background:#DA8188" data-h="#DA8188"></i><i style="background:#D8E9DF;color:#222" data-h="#D8E9DF"></i><i style="background:#33282F" data-h="#33282F"></i></div></div></article>
-        <article class="bs b5"><div class="tx"><div class="eyebrow">Feito pela equipe</div><h2>Prefere o olhar de quem faz <em>estratégia</em>?</h2><p>O Diagnóstico Imagem é feito por especialistas, em relatório personalizado. Converse com a gente no WhatsApp.</p><div class="btns"><a class="btn wa" target="_blank" rel="noopener" href="#" onclick="return waEquipe(this)">Falar no WhatsApp</a></div></div>
-          <div class="vis"><div class="chat"><div class="me">Quero entender o meu perfil</div><div class="you">Claro! Vamos olhar o seu Instagram juntos.</div><div class="you">Qual é o seu @?</div></div></div></article>
+        <article class="bs b8"><div class="tx"><div class="eyebrow">Em breve · Diagnóstico Google</div><h2>O que aparece quando procuram por <em>você</em> no Google?</h2><p>Ficha, avaliações, site e domínio, com as boas práticas do Google e um panorama do seu setor. 4x de ${brl(parc4(c.google))} ou ${brl(aVista(c.google))} à vista no PIX.</p><div class="btns"><button class="btn" onclick="goAnchor('google')">Conhecer o Diagnóstico Google</button></div></div>
+          <div class="vis"><div class="cmpmini"><div class="cmpleg"><span><i style="background:var(--acc)"></i>Nota por dimensão</span></div>${[['Ficha', 72], ['Avaliações', 80], ['Site', 47], ['Domínio', 60]].map(([n, a], k) => `<div class="mr"><b>${n}</b><div><i style="width:${a}%;background:var(--acc);animation-delay:${0.3 + k * 0.12}s"></i></div></div>`).join('')}</div></div></article>
       </div>
       <div class="bctl"><div class="bdots" id="bdots"></div><div class="barr"><button aria-label="Anterior" onclick="bnGo(-1)">‹</button><button aria-label="Próximo" onclick="bnGo(1)">›</button></div></div>
     </div>
@@ -4286,6 +4297,15 @@ function vHome() {
       <div class="card reveal"><div class="num">2</div><h3>Geramos o relatório em PDF</h3><p class="muted">Leitura dos seus posts, pontos fortes e de atenção, círculo cromático, tipografia, branding, jornada até a reserva e site e Google.</p></div>
       <div class="card reveal"><div class="num">3</div><h3>Você executa o mês</h3><p class="muted">Cronograma de 4 semanas com o porquê de cada conteúdo e roteiro completo para gravar e postar.</p></div>
     </div>
+  </div></section>
+
+  <section class="s" id="google" style="background:var(--t2)"><div class="wrap">
+    <div class="eyebrow">Em breve · Diagnóstico Google</div><h2>O que aparece quando procuram por você no Google</h2>
+    <p class="muted" style="max-width:660px">Lemos a sua ficha do Google, as avaliações, o site e o domínio, comparamos com as boas práticas do próprio Google e mostramos como você está frente aos negócios do seu setor na cidade.</p>
+    <div class="plans" style="margin-top:34px;grid-template-columns:minmax(0,600px)"><div class="plan reveal"><span class="tag">EM BREVE</span><div class="eyebrow" style="margin:0">Presença no Google</div><h3>Diagnóstico Google</h3>
+      <div class="price">${precoHTML(c.google)}</div>
+      <ul><li>Nota de 0 a 100 em cinco dimensões</li><li>Ficha do Google frente às regras e boas práticas do Google</li><li>Avaliações: temas, respostas do dono e as palavras dos clientes</li><li>Site: velocidade no celular, HTTPS, título e contato</li><li>Domínio e e-mail profissional</li><li>Panorama do seu setor na cidade</li></ul>
+      <a class="btn wa" target="_blank" rel="noopener" href="#" onclick="return waEquipe(this)">Quero ser avisado</a></div></div>
   </div></section>
 
   <section class="s" id="arquetipo" style="background:var(--g8);color:var(--t2)"><div class="wrap">
@@ -4314,29 +4334,15 @@ function vHome() {
 
 
   <section class="s" id="planos" style="background:var(--t2)"><div class="wrap">
-    <div class="eyebrow">Diagnóstico de Perfil</div><h2>Três formas de começar</h2>
-    <p class="muted" style="max-width:620px">Todas partem do seu @. Muda a profundidade da análise e o que você leva para executar. <a href="#arquetipo" style="color:var(--acc2);font-weight:600" onclick="goAnchor('arquetipo');return false">Procura o Diagnóstico de Arquétipo? Ver aqui →</a></p>
-    <div class="plans" style="margin-top:44px">
-      <div class="plan reveal">
-        <div class="eyebrow" style="margin:0">Leitura rápida</div><h3>Express</h3>
-        <div class="price">${precoHTML(c.express)}</div>
-        <p class="muted small" style="margin:0">Para saber onde você está.</p>
-        <ul><li>Relatório em PDF de 18 páginas, no padrão Imagem</li><li>Cadência de posts e checklist da primeira impressão</li><li>As 5 ações prioritárias e o plano de 30, 60 e 90 dias</li><li>Pontos fortes, pontos de atenção e círculo cromático</li><li class="no">Tipografia, branding e leitura post a post</li><li class="no">Cronograma de 4 semanas com roteiros</li></ul>
-        <button class="btn dk" onclick="choose('express')">Quero o Express</button>
-      </div>
-      <div class="plan hl reveal"><span class="tag">COMPLETO · PDF DE 36 PÁGINAS</span>
-        <div class="eyebrow" style="margin:0;color:var(--acc)">Análise completa + roteiros</div><h3>Diagnóstico Completo</h3>
+    <div class="eyebrow">Diagnóstico de Perfil</div><h2>O Instagram lido post a post</h2>
+    <p class="muted" style="max-width:620px">Parte do seu @. Você leva o relatório e o mês de conteúdo pronto. <a href="#arquetipo" style="color:var(--acc2);font-weight:600" onclick="goAnchor('arquetipo');return false">Procura o Diagnóstico de Arquétipo? Ver aqui →</a></p>
+    <div class="plans" style="margin-top:44px;grid-template-columns:minmax(0,600px)">
+      <div class="plan hl reveal"><span class="tag">PDF DE 36 PÁGINAS</span>
+        <div class="eyebrow" style="margin:0;color:var(--acc)">Análise completa + roteiros</div><h3>Diagnóstico de Perfil</h3>
         <div class="price">${precoHTML(c.completo)}</div>
         <p class="small" style="margin:0;color:var(--t4)">Para sair com o mês de conteúdo pronto.</p>
-        <ul><li>Tudo do Express</li><li>Relatório em PDF de 36 páginas, no padrão Imagem</li><li>Círculo cromático, tipografia e branding</li><li>Leitura post a post, legendas e jornada até a reserva</li><li>Site e Google Meu Negócio</li><li>Hipótese de marca e linha editorial</li><li>Cronograma de 4 semanas, com o porquê</li><li>12 conteúdos com roteiro breve: gancho, cenas e chamada para ação</li><li>PDF protegido contra edição, liberado para impressão</li></ul>
-        <button class="btn" onclick="choose('completo')">Quero o completo</button>
-      </div>
-      <div class="plan reveal">
-        <div class="eyebrow" style="margin:0">Feito pela equipe</div><h3>Diagnóstico Imagem</h3>
-        <div class="price" style="font-size:1.8rem;padding:10px 0 6px">Sob consulta</div>
-        <p class="muted small" style="margin:0">Para quem quer o olhar de especialistas.</p>
-        <ul><li>Leitura do seu perfil por quem faz estratégia</li><li>Relatório em PDF personalizado</li><li>Cronograma estratégico do mês</li><li>Conversa para tirar dúvidas</li><li>Possibilidade de produção com a Imagem (valor à parte)</li></ul>
-        <a class="btn wa" id="wa-eq" target="_blank" rel="noopener" href="#" onclick="return waEquipe(this)">Falar no WhatsApp</a>
+        <ul><li>Relatório em PDF de 36 páginas, no padrão Imagem</li><li>24 posts lidos, cadência e checklist da primeira impressão</li><li>As 5 ações prioritárias e o plano de 30, 60 e 90 dias</li><li>Círculo cromático, tipografia e branding</li><li>Leitura post a post, legendas e jornada até a reserva</li><li>Site e Google Meu Negócio</li><li>Hipótese de marca e linha editorial</li><li>Cronograma de 4 semanas, com o porquê</li><li>12 conteúdos com roteiro breve: gancho, cenas e chamada para ação</li><li>PDF protegido contra edição, liberado para impressão</li></ul>
+        <button class="btn" onclick="choose('completo')">Quero o Diagnóstico de Perfil</button>
       </div>
     </div>
     <p class="muted small" style="margin-top:22px">A produção dos conteúdos é sua. Se quiser que a Imagem produza, o valor é negociado à parte.</p>
@@ -4355,7 +4361,7 @@ function vHome() {
   <section class="s"><div class="wrap">
     <div class="eyebrow">Veja por dentro</div><h2>O que o relatório avalia</h2>
     <div class="strip" style="margin-top:26px">
-      <div class="st reveal"><b data-count="12">0</b>posts lidos um a um</div><div class="st reveal"><b data-count="5">0</b>cores medidas no grid</div><div class="st reveal"><b data-count="4">0</b>semanas de conteúdo</div><div class="st reveal"><b data-count="12">0</b>conteúdos com roteiro</div><div class="st reveal"><b data-count="36">0</b>páginas no PDF padrão</div>
+      <div class="st reveal"><b data-count="24">0</b>posts lidos um a um</div><div class="st reveal"><b data-count="5">0</b>cores medidas no grid</div><div class="st reveal"><b data-count="4">0</b>semanas de conteúdo</div><div class="st reveal"><b data-count="12">0</b>conteúdos com roteiro</div><div class="st reveal"><b data-count="36">0</b>páginas no PDF padrão</div>
     </div>
     <div style="margin-top:28px"><button class="btn dk" onclick="demo()">Ver um diagnóstico de exemplo</button></div>
   </div></section>
@@ -4364,7 +4370,7 @@ function vHome() {
     <div class="eyebrow">Perguntas frequentes</div><h2>Antes de começar</h2>
     <details><summary>Preciso dar a senha do Instagram?</summary><p>Não. A leitura usa apenas informações públicas do perfil. Nunca pedimos senha nem acesso à conta.</p></details>
     <details><summary>O diagnóstico mede alcance e engajamento?</summary><p>Não. A análise lê o que é visível publicamente e não mede desempenho. O relatório informa quanto foi capturado.</p></details>
-    <details><summary>Como recebo o diagnóstico?</summary><p>Em PDF: o Express com 18 páginas e o Completo com 36, no mesmo padrão visual. O arquivo é protegido contra edição e cópia, e a impressão fica liberada.</p></details>
+    <details><summary>Como recebo o diagnóstico?</summary><p>Em PDF, no padrão visual da Imagem: o Perfil com 36 páginas, o Arquétipo com 13 e a Autoridade num relatório único. O arquivo é protegido contra edição e cópia, e a impressão fica liberada.</p></details>
     <details><summary>O que é o Diagnóstico de Arquétipo e por que há um questionário?</summary><p>O arquétipo mostra a personalidade de marca que o seu perfil transmite. O questionário vem antes porque registra o que você quer transmitir; depois a equipe lê o perfil público e confronta as duas coisas. Assim o relatório mostra a distância entre a intenção e a percepção.</p></details>
     <details><summary>Meu perfil é privado. Funciona?</summary><p>A leitura automática precisa que o perfil seja público. Para perfis privados, fale com a equipe.</p></details>
     <details><summary>Vocês produzem os conteúdos?</summary><p>O diagnóstico entrega relatório e cronograma. A produção é sua, ou da Imagem com valor combinado à parte.</p></details>
@@ -4911,8 +4917,8 @@ function vAdmin() {
   </div>
   <div class="card" style="margin-bottom:18px"><h3>Preços e contato</h3>
     <div class="row" style="grid-template-columns:repeat(3,1fr)">
-      <div class="field"><label>Express (R$)</label><input class="in" id="c-ex" type="number" min="0" value="${c.express}"></div>
-      <div class="field"><label>Completo (R$)</label><input class="in" id="c-co" type="number" min="0" value="${c.completo}"></div>
+      <div class="field"><label>Diagnóstico Google (R$)</label><input class="in" id="c-gg" type="number" min="0" value="${c.google}"></div><input type="hidden" id="c-ex" value="${c.express}">
+      <div class="field"><label>Diagnóstico de Perfil (R$)</label><input class="in" id="c-co" type="number" min="0" value="${c.completo}"></div>
       <div class="field"><label>Diagnóstico de Arquétipo (R$)</label><input class="in" id="c-ae" type="number" min="0" value="${c.arqExpress}"></div>
       <div class="field"><label>Arquétipo aplicado, só dentro da Autoridade (R$ de referência)</label><input class="in" id="c-ac" type="number" min="0" value="${c.arqCompleto}"></div>
       <div class="field"><label>Desconto à vista no PIX (%)</label><input class="in" id="c-dv" type="number" min="0" max="50" value="${c.descAvista}"></div>
@@ -4983,6 +4989,7 @@ function bindAdmin() {
         completo: +$('#c-co').value || 0,
         arqExpress: +$('#c-ae').value || 0,
         arqCompleto: +$('#c-ac').value || 0,
+        google: +$('#c-gg').value || 0,
         autoridade: +$('#c-au').value || 0,
         descAvista: +$('#c-dv').value || 0,
         dias: Math.max(1, +$('#c-di').value || 30),
