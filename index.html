@@ -3601,13 +3601,13 @@ function planoInfo(p) {
       express: { nome: 'Leitura rápida', valor: c.express, completo: false, arq: false },
       completo: { nome: 'Diagnóstico Completo', valor: c.completo, completo: true, arq: false },
       'arq-express': {
-        nome: 'Arquétipo Essencial',
+        nome: 'Diagnóstico de Arquétipo',
         valor: c.arqExpress,
         completo: false,
         arq: true,
       },
       'arq-completo': {
-        nome: 'Arquétipo Estratégico',
+        nome: 'Arquétipo aplicado',
         valor: c.arqCompleto,
         completo: true,
         arq: true,
@@ -3956,10 +3956,10 @@ function arqAreaHTML(o, admin) {
   const lock = (inner, titulo) =>
     PI.completo
       ? inner
-      : `<div class="lock"><div class="inner">${inner}</div><div class="ov"><div><b>Disponível no Arquétipo Estratégico</b><span class="small">${titulo}</span><br><button class="btn sm" style="margin-top:14px" onclick="upgrade()">Liberar por ${brl(c.arqCompleto)}</button></div></div></div>`;
+      : `<div class="lock"><div class="inner">${inner}</div><div class="ov"><div><b>Disponível no Diagnóstico de Autoridade</b><span class="small">${titulo}</span><br><button class="btn sm" style="margin-top:14px" onclick="upgrade()">Liberar por ${brl(c.autoridade)}</button></div></div></div>`;
   const S1 = (id, pg, t, inner) => `<div class="sec" id="${id}"><span class="pg">${pg}</span><h3>${t}</h3>${inner}</div>`;
   const tabConfronto = `<div class="layout"><aside class="toc"><a href="#res">Resultado</a><a href="#conf">Percebido x pretendido</a><a href="#pal">Suas palavras x o perfil</a><a href="#coer">Coerência por frente</a><a href="#prio">Prioridades</a><a href="#lim">Limites</a></aside><div>
-  ${PI.completo ? '' : `<div class="up"><div><b>Quer a aplicação completa?</b>O Arquétipo Estratégico libera voz, visual, conteúdos e o plano de 4 semanas por ${brl(c.arqCompleto)}.</div><button class="btn" onclick="upgrade()">Liberar o Estratégico</button></div>`}
+  ${PI.completo ? '' : `<div class="up"><div><b>Quer a aplicação completa?</b>O Diagnóstico de Autoridade (Perfil Completo + Arquétipo) libera voz, visual, conteúdos e o plano de 4 semanas por ${brl(c.autoridade)}.</div><button class="btn" onclick="upgrade()">Ver a Autoridade</button></div>`}
   ${S1('res', '03', 'Resultado do confronto', `<div class="grid g2"><div class="card" style="margin:0;background:var(--g8);color:var(--t2);border-color:var(--g8)"><div class="eyebrow" style="margin:0 0 6px;color:var(--acc)">Pretendido · suas respostas</div><div style="font:700 1.9rem var(--sans);color:#fff">${esc(arqNome(pP))}</div><div style="color:var(--t4)">com toque de ${esc(arqNome(pS))}</div></div><div class="card" style="margin:0"><div class="eyebrow" style="margin:0 0 6px">Percebido · o perfil hoje</div><div style="font:700 1.9rem var(--sans)">${esc(arqNome(vP))}</div><div class="muted">com toque de ${esc(arqNome(vS))}</div></div></div><p style="margin:16px 0 0">${veredito}</p><p class="muted small" style="margin:8px 0 0">Resultado combinado (perfil 60% + questionário 40%): <b>${esc(arqNome(x.rankFinal[0]))}</b>, com <b>${esc(arqNome(x.rankFinal[1]))}</b> em segundo.</p>`)}
   ${S1('conf', '04', 'Percebido x pretendido, arquétipo por arquétipo', `<p class="muted" style="margin-top:0">Cada barra vai de 0 a 100 e compara com o arquétipo mais forte da leitura. Onde as duas barras se afastam, a marca diz uma coisa e o perfil mostra outra.</p>${arqBarsCmp(x)}`)}
   ${S1('pal', '05', 'O que você disse x o que o perfil mostra', `<p class="muted" style="margin-top:0">A equipe confere cada palavra que você escolheu com a bio, as legendas e o visual do perfil público.</p>${arqPalavrasTabela(o)}`)}
@@ -4297,16 +4297,16 @@ function vHome() {
       <div class="card reveal" style="background:var(--g7);border-color:var(--g6);color:var(--t2)"><div class="num">3</div><h3 style="color:#fff">Confrontamos</h3><p style="color:var(--t3);margin:0">Percebido x pretendido, palavra por palavra, com o plano para fechar a distância.</p></div>
     </div>
     <div class="plans">
-      <div class="plan reveal"><div class="eyebrow" style="margin:0">Leitura do confronto</div><h3>Arquétipo Essencial</h3>
+      <div class="plan reveal"><div class="eyebrow" style="margin:0">Leitura do confronto</div><h3>Diagnóstico de Arquétipo</h3>
         <div class="price">${precoHTML(c.arqExpress)}</div>
         <p class="muted small" style="margin:0">O que importa para entender o seu arquétipo.</p>
         <ul><li>Relatório em PDF de 13 páginas, no padrão Imagem</li><li>Seu arquétipo principal e o toque secundário</li><li>Percebido x pretendido, arquétipo por arquétipo</li><li>Suas palavras x o que o perfil mostra</li><li>Coerência por frente e 4 prioridades de ajuste</li><li class="no">Voz, visual e conteúdos aplicados</li><li class="no">Plano de 4 semanas</li></ul>
-        <button class="btn dk" onclick="choose('arq-express')">Quero o Arquétipo Essencial</button></div>
-      <div class="plan hl reveal"><span class="tag">ESTRATÉGICO · PDF DE 20 PÁGINAS</span><div class="eyebrow" style="margin:0;color:var(--acc)">Confronto + aplicação</div><h3>Arquétipo Estratégico</h3>
-        <div class="price">${precoHTML(c.arqCompleto)}</div>
-        <p class="small" style="margin:0;color:var(--t4)">Para sair com o arquétipo aplicado à sua marca.</p>
-        <ul><li>Tudo do Essencial</li><li>Relatório em PDF de 20 páginas, no padrão Imagem</li><li>Voz da marca com frases-modelo</li><li>Cores, tipografia e fotografia do arquétipo</li><li>Conteúdos e chamadas para ação que reforçam o arquétipo</li><li>Plano de 4 semanas, uma frente por semana</li><li>PDF protegido contra edição, liberado para impressão</li></ul>
-        <button class="btn" onclick="choose('arq-completo')">Quero o Arquétipo Estratégico</button></div>
+        <button class="btn dk" onclick="choose('arq-express')">Quero o Diagnóstico de Arquétipo</button></div>
+      <div class="plan hl reveal"><span class="tag">COM O PERFIL COMPLETO</span><div class="eyebrow" style="margin:0;color:var(--acc)">Quer o arquétipo aplicado?</div><h3>Diagnóstico de Autoridade</h3>
+        <div class="price">${precoHTML(c.autoridade)}</div>
+        <p class="small" style="margin:0;color:var(--t4)">A versão estratégica do arquétipo vem junto com o Perfil Completo, num relatório único.</p>
+        <ul><li>Tudo do Diagnóstico de Arquétipo</li><li>Voz da marca com frases-modelo</li><li>Cores, tipografia e fotografia do arquétipo</li><li>Conteúdos e chamadas para ação que reforçam o arquétipo</li><li>Perfil Completo: 24 posts lidos, destaques, bio e linha editorial</li><li>Um plano de 4 semanas, um só questionário e um só pagamento</li></ul>
+        <button class="btn" onclick="goAnchor('autoridade')">Ver o Diagnóstico de Autoridade</button></div>
     </div>
     <p style="margin-top:22px"><button class="btn lt" onclick="arqExemplo('perfil.exemplo','arq-completo')">Ver um diagnóstico de arquétipo de exemplo</button></p>
     <p class="small" style="color:var(--t4);margin-top:14px">Quer os dois? O Diagnóstico de Perfil e o de Arquétipo se completam: um lê como o perfil funciona, o outro confere se ele diz o que a marca quer dizer.</p>
@@ -4344,9 +4344,9 @@ function vHome() {
 
   <section class="s" id="autoridade"><div class="wrap">
     <div class="eyebrow">Novo · Diagnóstico de Autoridade</div><h2>Quem você é + como você aparece<br><em>= autoridade</em></h2>
-    <p style="max-width:700px">Autoridade nasce quando o que a marca quer transmitir e o que o perfil mostra dizem a mesma coisa. Aqui juntamos o <b>Diagnóstico de Perfil Completo</b> e o <b>Arquétipo Estratégico</b> num <b>relatório único</b>: um @, um questionário, um pagamento e um só plano de 4 semanas.</p>
+    <p style="max-width:700px">Autoridade nasce quando o que a marca quer transmitir e o que o perfil mostra dizem a mesma coisa. Aqui juntamos o <b>Diagnóstico de Perfil Completo</b> e o <b>Arquétipo, com a aplicação estratégica,</b> num <b>relatório único</b>: um @, um questionário, um pagamento e um só plano de 4 semanas.</p>
     <div class="plans" style="grid-template-columns:minmax(0,600px);margin-top:28px"><div class="plan hl reveal"><span class="tag">RELATÓRIO ÚNICO</span><div class="eyebrow" style="margin:0;color:var(--acc)">Perfil + Arquétipo</div><h3>Diagnóstico de Autoridade</h3>
-      <div class="price">${precoHTML(c.autoridade, 'menos que os dois separados (' + brl(c.completo + c.arqCompleto) + ')')}</div>
+      <div class="price">${precoHTML(c.autoridade, 'menos que os dois separados (' + brl(c.completo + c.arqExpress) + ')')}</div>
       <ul><li>Relatório único em PDF, sem páginas repetidas</li><li>Arquétipo, percebido x pretendido e suas palavras x o perfil</li><li>Nota do perfil, círculo cromático e leitura post a post</li><li>As cinco frentes cruzadas: verbal, visual, conteúdo, comportamento e posicionamento</li><li>Bio, linha editorial e roteiros já na voz do seu arquétipo</li><li>Um único cronograma de 4 semanas com 12 conteúdos</li><li>PDF protegido contra edição, liberado para impressão</li></ul>
       <button class="btn" onclick="choose('autoridade')">Quero o Diagnóstico de Autoridade</button></div></div>
     <p style="margin-top:22px"><button class="btn lt" onclick="arqExemplo('perfil.exemplo','autoridade')">Ver um diagnóstico de autoridade de exemplo</button></p>
@@ -4681,7 +4681,7 @@ function sec(id, pg, title, inner, locked) {
 }
 function upgrade() {
   const o = S.cur;
-  S.plano = planoInfo(o.plano).combo ? 'autoridade' : isArq(o) ? 'arq-completo' : 'completo';
+  S.plano = planoInfo(o.plano).combo ? 'autoridade' : isArq(o) ? 'autoridade' : 'completo';
   S.view = 'checkout';
   render();
 }
@@ -4913,8 +4913,8 @@ function vAdmin() {
     <div class="row" style="grid-template-columns:repeat(3,1fr)">
       <div class="field"><label>Express (R$)</label><input class="in" id="c-ex" type="number" min="0" value="${c.express}"></div>
       <div class="field"><label>Completo (R$)</label><input class="in" id="c-co" type="number" min="0" value="${c.completo}"></div>
-      <div class="field"><label>Arquétipo Essencial (R$)</label><input class="in" id="c-ae" type="number" min="0" value="${c.arqExpress}"></div>
-      <div class="field"><label>Arquétipo Estratégico (R$)</label><input class="in" id="c-ac" type="number" min="0" value="${c.arqCompleto}"></div>
+      <div class="field"><label>Diagnóstico de Arquétipo (R$)</label><input class="in" id="c-ae" type="number" min="0" value="${c.arqExpress}"></div>
+      <div class="field"><label>Arquétipo aplicado, só dentro da Autoridade (R$ de referência)</label><input class="in" id="c-ac" type="number" min="0" value="${c.arqCompleto}"></div>
       <div class="field"><label>Desconto à vista no PIX (%)</label><input class="in" id="c-dv" type="number" min="0" max="50" value="${c.descAvista}"></div>
       <div class="field"><label>Diagnóstico de Autoridade (R$)</label><input class="in" id="c-au" type="number" min="0" value="${c.autoridade}"></div>
       <div class="field"><label>Dias de acesso</label><input class="in" id="c-di" type="number" min="1" value="${c.dias}"></div>
@@ -5051,7 +5051,7 @@ function tpRender() {
   <h4>1 · Cenário</h4>
   <div class="field"><label>Perfil (@)</label><input class="in" id="tp-h" value="${esc(TEST.handle)}"></div>
   <div class="r2">
-    <div class="field"><label>Plano</label><select class="in" id="tp-p"><option value="express" ${TEST.plano === 'express' ? 'selected' : ''}>Leitura rápida</option><option value="completo" ${TEST.plano === 'completo' ? 'selected' : ''}>Completo</option><option value="arq-express" ${TEST.plano === 'arq-express' ? 'selected' : ''}>Arquétipo Essencial</option><option value="arq-completo" ${TEST.plano === 'arq-completo' ? 'selected' : ''}>Arquétipo Estratégico</option><option value="autoridade" ${TEST.plano === 'autoridade' ? 'selected' : ''}>Diagnóstico de Autoridade</option></select></div>
+    <div class="field"><label>Plano</label><select class="in" id="tp-p"><option value="express" ${TEST.plano === 'express' ? 'selected' : ''}>Leitura rápida</option><option value="completo" ${TEST.plano === 'completo' ? 'selected' : ''}>Completo</option><option value="arq-express" ${TEST.plano === 'arq-express' ? 'selected' : ''}>Diagnóstico de Arquétipo</option><option value="arq-completo" ${TEST.plano === 'arq-completo' ? 'selected' : ''}>Arquétipo aplicado (demonstração)</option><option value="autoridade" ${TEST.plano === 'autoridade' ? 'selected' : ''}>Diagnóstico de Autoridade</option></select></div>
     <div class="field"><label>Perfil de nota</label><select class="in" id="tp-n"><option value="">Pelo @ (aleatório)</option><option value="fraco" ${TEST.nivel === 'fraco' ? 'selected' : ''}>Fraco</option><option value="medio" ${TEST.nivel === 'medio' ? 'selected' : ''}>Médio</option><option value="forte" ${TEST.nivel === 'forte' ? 'selected' : ''}>Forte</option></select></div>
   </div>
   <div class="field"><label>Segmento</label><select class="in" id="tp-s"><option value="-1">Automático</option>${SEG.map((s, i) => `<option value="${i}" ${TEST.seg === i ? 'selected' : ''}>${s.n}</option>`).join('')}</select></div>
