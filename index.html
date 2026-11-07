@@ -4641,8 +4641,19 @@ function vLoading() {
 }
 
 /* ---------- ÁREA DO CLIENTE ---------- */
+/* PDFs espelho (simulação): relatórios reais já gerados, abertos no lugar da impressão da tela */
+const PDF_ESPELHO = {
+  'samara.hayumi': {
+    'arq-express': 'espelho/Diagnostico_de_Arquetipo_Samara_Hayumi.pdf',
+  },
+};
 function salvarPDF() {
   const o = S.cur;
+  const esp = o && PDF_ESPELHO[(o.handle || '').replace(/^@/, '').toLowerCase()];
+  if (esp && esp[o.plano]) {
+    window.open(esp[o.plano], '_blank');
+    return;
+  }
   if (o && planoInfo(o.plano).completo && accessDays(o).dias > 0) {
     const prev = S.tab;
     S.tab = 'all';
