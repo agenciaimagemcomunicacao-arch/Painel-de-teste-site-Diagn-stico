@@ -3915,6 +3915,7 @@ function vEnviado() {
     <div class="eyebrow" style="text-align:center">Respostas recebidas</div><h2 style="text-align:center">Recebemos as suas respostas</h2>
     <p class="muted" style="text-align:center">Agora a análise do perfil ${esc(o.handle)} pode começar. As suas respostas ficam guardadas e só são abertas depois que o perfil for lido, para que o desejo não influencie a leitura.</p>
     <div class="card" style="margin:18px 0"><b>Resumo do envio</b><div class="muted small" style="margin-top:6px">15 respostas abertas · 10 escolhas · pedido ${esc(o.id)} · ${new Date(o.envio.enviado_em).toLocaleString('pt-BR')}</div></div>
+    <p class="noprint" style="text-align:center;margin:6px 0 0"><a href="#" class="small muted" onclick="baixarRespostas();return false" style="text-decoration:underline">Salvar cópia das respostas (arquivo)</a></p>
     <details class="noprint" data-test><summary style="cursor:pointer" class="small"><b>Teste:</b> ver o que seria enviado ao sistema (POST)</summary><pre style="white-space:pre-wrap;word-break:break-word;font-size:.78rem;background:var(--g9);color:var(--t2);padding:14px;border-radius:12px;margin-top:10px;max-height:320px;overflow:auto">${esc(JSON.stringify(o.envio, null, 2))}</pre></details>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px"><button class="btn" onclick="iniciarGeracao()">Iniciar a análise do meu perfil</button><button class="btn ghost" style="color:var(--g7)" onclick="go('quest')">Revisar respostas</button></div>
   </div></div></section>`;
@@ -4092,6 +4093,20 @@ function arqAreaHTML(o, admin) {
     </div>
     ${tab}
   </div>`;
+}
+
+/* baixa as respostas do questionário (formato lido pelo gerador de PDF da Imagem) */
+function baixarRespostas() {
+  const o = S.cur;
+  if (!o || !o.envio) return;
+  const dados = { handle: o.handle, plano: o.plano, abertas: o.envio.abertas, pares: o.envio.pares, enviado_em: o.envio.enviado_em };
+  const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'respostas_' + o.handle.replace(/^@/, '') + '.json';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 </script>
     <script>/* ================= RENDER ================= */
