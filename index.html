@@ -2256,6 +2256,7 @@ header.site.sc {
             "
             >Diagnóstico Google</a
           >
+          <a href="#area" id="nav-area" onclick="abrirArea(); return false;">Área do cliente</a>
           <button class="hide-m" data-test onclick="go('admin')">Painel interno</button>
           <button data-test onclick="tpToggle()">Painel de testes</button>
           <a
@@ -5047,6 +5048,23 @@ function bindAdmin() {
     };
   const cv = $('#a-csv');
   if (cv) cv.onclick = () => dlCSV();
+}
+
+/* entrada "Área do cliente": abre o diagnóstico mais recente deste aparelho */
+function abrirArea() {
+  const l = orders();
+  if (!l.length) {
+    const d = document.createElement('div');
+    d.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#222;color:#fff;padding:12px 18px;border-radius:12px;font:600 14px sans-serif;z-index:99999;max-width:90%;text-align:center';
+    d.textContent = 'Você ainda não tem diagnóstico neste aparelho. Escolha um produto para começar.';
+    document.body.appendChild(d);
+    setTimeout(() => d.remove(), 3500);
+    return;
+  }
+  S.cur = l[0];
+  S.tab = 'diag';
+  S.handle = S.cur.handle;
+  go('area');
 }
 </script>
     <script>/* ===== painel de testes ===== */
